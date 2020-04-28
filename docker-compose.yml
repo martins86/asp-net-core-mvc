@@ -1,0 +1,16 @@
+version: "3.1"
+services:
+  SalesWebMvcDb:
+    image: mysql-docker
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: SalesWebMvcAppDb
+    ports: 
+      - 3306:3306
+    networks: 
+      - salesweb-network
+      
+networks: 
+  alesweb-network:
+    driver: bridge
