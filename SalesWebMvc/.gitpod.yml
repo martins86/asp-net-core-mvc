@@ -1,0 +1,41 @@
+# The Docker image to run your workspace in. Defaults to gitpod/workspace-full
+#image:
+#  file: .gitpod.Dockerfile
+#
+image: gitpod/workspace-dotnet
+#image: gitpod/workspace-dotnet-vnc
+
+github:
+  prebuilds:
+    # enable for the master/default branch (defaults to true)
+    master: true
+    # enable for all branches in this repo (defaults to false)
+    branches: false
+    # enable for pull requests coming from this repo (defaults to true)
+    pullRequests: true
+    # enable for pull requests coming from forks (defaults to false)
+    pullRequestsFromForks: false
+    # add a check to pull requests (defaults to true)
+    addCheck: true
+    # add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
+    addComment: false
+    # add a "Review in Gitpod" button to the pull request's description (defaults to false)
+    addBadge: false
+    # add a label once the prebuild is ready to pull requests (defaults to false)
+    addLabel: false
+
+# Ports to expose on workspace startup (optional)
+ports:
+  - port: 8000
+    onOpen: open-preview
+  - port: 5000
+    onOpen: ignore
+  - port: 5001
+    onOpen: open-preview
+
+tasks:
+  - command: cd SalesWebMvc/ && dotnet run --urls http://0.0.0.0:5001
+
+vscode:
+  extensions:
+    - ms-vscode.csharp@1.21.12:kw8SkO8+aVTSFug281WfQQ==
