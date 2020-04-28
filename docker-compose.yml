@@ -12,5 +12,5 @@ services:
       - salesweb-network
       
 networks: 
-  alesweb-network:
+  salesweb-network:
     driver: bridge
