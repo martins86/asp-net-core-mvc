@@ -1,16 +1,27 @@
 version: "3.1"
 services:
-  SalesWebMvcDb:
-    image: mysql-docker
-    restart: always
-    environment: 
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: SalesWebMvcAppDb
-    ports: 
-      - 3306:3306
-    networks: 
-      - salesweb-network
-      
+    mysql-server:
+        image: mysql:8.0
+        command: 
+          --default-authentication-plugin=mysql_native_password
+          --local-infile=ON --character-set-server=utf8mb4
+          --collation-server=utf8mb4_unicode_ci
+        restart: always
+        environment: 
+            MYSQL_ROOT_PASSWORD: thiagodfStrong@Passw0rd
+            MYSQL_DATABASE: saleswebmvcappdb
+        ports: 
+            - 3306:3306
+        networks:
+            - serverdb
+            
+    adminer:
+        image: adminer
+        ports:
+          - 8080:8080
+        networks:
+          - serverdb
+
 networks: 
-  salesweb-network:
+  serverdb:
     driver: bridge
